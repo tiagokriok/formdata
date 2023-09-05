@@ -5,11 +5,10 @@ export default defineNuxtConfig({
   colorMode: {
     preference: "light",
   },
-  nitro: {
-    routeRules: {
-      "/api/submit": {
-        cors: true,
-      }
-    } 
-  }
+  routeRules: {
+    "/api/submit": {
+      cors: true,
+      headers: { "Access-Control-Allow-Origin": "*" },
+    },
+  },
 });
