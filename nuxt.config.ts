@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/api/submit": {
-      cors: true,
+      headers: { "Access-Control-Allow-Origin": "*" },
     },
   },
 });
