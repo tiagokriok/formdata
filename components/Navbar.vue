@@ -4,7 +4,7 @@
   >
     <div class="flex items-center gap-x-2">
       <Icon name="solar:document-add-bold-duotone" class="h-8 w-8" />
-      <span class="text-lg font-bold font-display">Formjar</span>
+      <span class="text-lg font-bold font-display">Formdata</span>
     </div>
     <div>
       <div class="items-center gap-x-3 flex">

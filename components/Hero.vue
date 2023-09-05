@@ -7,7 +7,7 @@
       <p
         class="text-base md:text-lg font-medium text-gray-600 dark:text-gray-400"
       >
-        Formjar will provide you a simple endpoint to collect form data and send
+        Formdata will provide you a simple endpoint to collect form data and send
         it to your email.
       </p>
       <img src="/code.png" class="w-full h-auto shadow-2xl" />

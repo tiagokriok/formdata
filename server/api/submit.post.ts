@@ -1,15 +1,17 @@
 const BASE_URL = "https://api.mailchannels.net/tx/v1/send";
 
+interface FormPayload {
+  fromName: string;
+  subject: string;
+  toEmail: string;
+  [key: string]: string;
+}
+
 function generateEmailBody(data: any) {
   let emailBody = "Form submission:\n\n";
 
   for (const [key, value] of Object.entries(data)) {
-    if (
-      key !== "toEmail" &&
-      key !== "fromEmail" &&
-      key !== "fromName" &&
-      key !== "subject"
-    ) {
+    if (key !== "toEmail" && key !== "fromName" && key !== "subject") {
       emailBody += `${key}: ${value}\n`;
     }
   }
@@ -17,8 +19,20 @@ function generateEmailBody(data: any) {
   return emailBody;
 }
 
+function isFormPayload(obj: any): obj is FormPayload {
+  return (
+    typeof obj === "object" &&
+    typeof obj.fromName === "string" &&
+    typeof obj.subject === "string" &&
+    typeof obj.toEmail === "string"
+  );
+}
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
+  if (!isFormPayload(body)) {
+    return new Response("Invalid payload", { status: 400 });
+  }
 
   const sendEmail = {
     personalizations: [
@@ -26,14 +40,14 @@ export default defineEventHandler(async (event) => {
         to: [
           {
             email: body.toEmail,
-            name: "Test Recipient",
+            name: "Form Data User",
           },
         ],
       },
     ],
     from: {
-      email: body.fromEmail,
-      name: body.fromName,
+      email: "hi@formdata.cc",
+      name: "Form Data",
     },
     subject: body.subject,
     content: [
