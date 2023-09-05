@@ -10,7 +10,7 @@
         Formjar will provide you a simple endpoint to collect form data and send
         it to your email.
       </p>
-      <img src="code.png" class="w-full h-auto shadow-2xl" />
+      <img src="/code.png" class="w-full h-auto shadow-2xl" />
     </div>
   </section>
 </template>
