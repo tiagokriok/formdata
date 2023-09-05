@@ -2,6 +2,10 @@
   <main class="home">
     <Navbar />
     <Hero />
+    <Docs />
+    <Opensource />
+    <Why />
+    <Footer />
   </main>
 </template>
 

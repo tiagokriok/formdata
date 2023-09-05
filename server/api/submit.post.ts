@@ -1,4 +1,6 @@
 const BASE_URL = "https://api.mailchannels.net/tx/v1/send";
+const FROM_EMAIL = "hi@formdata.cc";
+const FROM_NAME = "FormData Submission";
 
 interface FormPayload {
   fromName: string;
@@ -30,8 +32,19 @@ function isFormPayload(obj: any): obj is FormPayload {
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
+
   if (!isFormPayload(body)) {
-    return new Response("Invalid payload", { status: 400 });
+    const missingFields = [];
+    if (typeof body.fromName !== "string") missingFields.push("fromName");
+    if (typeof body.subject !== "string") missingFields.push("subject");
+    if (typeof body.toEmail !== "string") missingFields.push("toEmail");
+
+    return new Response(
+      `Missing or invalid fields: ${missingFields.join(", ")}`,
+      {
+        status: 400,
+      }
+    );
   }
 
   const sendEmail = {
@@ -46,8 +59,8 @@ export default defineEventHandler(async (event) => {
       },
     ],
     from: {
-      email: "hi@formdata.cc",
-      name: "Form Data",
+      email: FROM_EMAIL,
+      name: FROM_NAME,
     },
     subject: body.subject,
     content: [
