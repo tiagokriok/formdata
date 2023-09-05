@@ -31,8 +31,8 @@ function isFormPayload(obj: any): obj is FormPayload {
 }
 
 export default defineEventHandler(async (event) => {
+  handleCors(event, { origin: "*" });
   const body = await readBody(event);
-
   if (!isFormPayload(body)) {
     const missingFields = [];
     if (typeof body.fromName !== "string") missingFields.push("fromName");
