@@ -5,4 +5,12 @@ export default defineNuxtConfig({
   colorMode: {
     preference: "light",
   },
+  routeRules: {
+    "/api/submit": {
+      cors: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    },
+  },
 });
