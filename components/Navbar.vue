@@ -17,6 +17,7 @@
           class="transition-transform active:scale-[0.98]"
           to="https://github.com/fayazara/formdata"
           target="_blank"
+          external
         >
           <template #default>
             <Icon
